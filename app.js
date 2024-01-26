@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const {success , getUniqueId} = require('./helper')
@@ -8,6 +9,7 @@ const app = express()
 const port = 3000
 
 app.use(favicon(__dirname + '/favicon.ico'))
+app.use(morgan('dev'))
 app.use(bodyParser.json())
 
 app.get('/', (req,res) => res.send('Hello , Express!'))
