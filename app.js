@@ -24,12 +24,6 @@ require('./src/routes/createPokemon.js')(app)
 
 require('./src/routes/updatePokemon.js')(app)
 
-app.delete('/api/pokemons/:id', (req, res) => {
-  const id = parseInt(req.params.id)
-  const pokemonDeleted = pokemons.find(pokemon => pokemon.id === id)
-  pokemons = pokemons.filter(pokemon => pokemon.id !== id)
-  const message = `Le pokémon ${pokemonDeleted.name} a bien été supprimé.`
-  res.json({message, pokemonDeleted})
-});
+require('./src/routes/deletePokemon.js')(app)
 
 app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
