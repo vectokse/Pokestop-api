@@ -22,15 +22,7 @@ require('./src/routes/findPokemonByPk.js')(app)
 
 require('./src/routes/createPokemon.js')(app)
 
-app.put('/api/pokemons/:id', (req, res) => {
-  const id = parseInt(req.params.id);
-  const pokemonUpdated = { ...req.body, id: id }
-  pokemons = pokemons.map(pokemon => {
-    return pokemon.id === id ? pokemonUpdated : pokemon
-  })
-  const message = `Le pokémon ${pokemonUpdated.name} a bien été modifié.`
-  res.json({message, pokemonUpdated})
-});
+require('./src/routes/updatePokemon.js')(app)
 
 app.delete('/api/pokemons/:id', (req, res) => {
   const id = parseInt(req.params.id)
