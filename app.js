@@ -20,13 +20,7 @@ require('./src/routes/findAllPokemons.js')(app)
 
 require('./src/routes/findPokemonByPk.js')(app)
 
-app.post('/api/pokemons', (req, res) => {
-  const id = getUniqueId(pokemons)
-  const pokemonCreated = { ...req.body, ...{id: id, created: new Date()}};
-  pokemons.push(pokemonCreated);
-  const message = `Le pokémon ${pokemonCreated.name} a bien été crée.`
-  res.json({message, pokemonCreated})
-})
+require('./src/routes/createPokemon.js')(app)
 
 app.put('/api/pokemons/:id', (req, res) => {
   const id = parseInt(req.params.id);
