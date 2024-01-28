@@ -30,7 +30,19 @@ sequelize.authenticate()
 
 const Pokemon = PokemonModel(sequelize, Sequelize)
 sequelize.sync({force: true})
-    .then(_ => console.log('La base de données "Pokestop" a bien été synchronisée.'))
+    .then(_ => {
+        console.log('La base de données "Pokestop" a bien été synchronisée.')
+        pokemons.map(pokemon => {
+            Pokemon.create({
+              name: pokemon.name,
+              hp: pokemon.hp,
+              cp: pokemon.cp,
+              picture: pokemon.picture,
+              types: pokemon.types.join()
+            }).then(pokemon => console.log(pokemon.toJSON()))
+          });
+    })
+    
 
 app.use(favicon(__dirname + '/favicon.ico'))
 app.use(morgan('dev'))
