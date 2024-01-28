@@ -16,10 +16,7 @@ sequelize.initDb()
 
 app.get('/', (req, res) => res.send('Hello, Express! 👋'))
 
-app.get('/api/pokemons', (req, res) => {
-  const message = 'La liste des pokémons a bien été récupérée.'
-  res.json({message, pokemons})
-})
+require('./src/routes/findAllPokemons.js')(app)
 
 app.get('/api/pokemons/:id', (req, res) => {
   const id = parseInt(req.params.id)
