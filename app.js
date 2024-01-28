@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const {Sequelize} = require('sequelize')
 const {success , getUniqueId} = require('./helper')
 let pokemons = require('./mock-pokemon') 
+const PokemonModel = require('./src/models/pokemon')
 
 const app = express()
 const port = 3000
@@ -27,6 +28,9 @@ sequelize.authenticate()
    .then(_ => console.log('La connexion à la base de données a bien été etablie.'))
    .catch(error => console.log(`Imposible de se connecter à la base de données ${error}`))
 
+const Pokemon = PokemonModel(sequelize, Sequelize)
+sequelize.sync({force: true})
+    .then(_ => console.log('La base de données "Pokestop" a bien été synchronisée.'))
 
 app.use(favicon(__dirname + '/favicon.ico'))
 app.use(morgan('dev'))
