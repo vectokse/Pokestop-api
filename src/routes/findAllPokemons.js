@@ -1,7 +1,8 @@
 const { Pokemon } = require('../db/sequelize')
+const auth = require('../auth/auth')
   
 module.exports = (app) => {
-    app.get('/api/pokemons', async(req, res) => {
+    app.get('/api/pokemons', auth, async(req, res) => {
         try{
             const pokemons = await Pokemon.findAll()
 
