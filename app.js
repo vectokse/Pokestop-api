@@ -26,4 +26,9 @@ require('./src/routes/updatePokemon.js')(app)
 
 require('./src/routes/deletePokemon.js')(app)
 
+app.use(({res}) => {
+    const message = 'Imposible de trouver la resources demandée ! Vous pouvez essayer une autre URL.'
+    res.status(404).json({message})
+})
+
 app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
