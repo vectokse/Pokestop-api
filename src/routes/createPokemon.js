@@ -1,7 +1,8 @@
 const { Pokemon } = require('../db/sequelize')
+const auth = require('../auth/auth')
   
 module.exports = (app) => {
-    app.post('/api/pokemons', async(req, res) => {
+    app.post('/api/pokemons', auth, async(req, res) => {
         try{
             const pokemon = await Pokemon.create(req.body)
 
